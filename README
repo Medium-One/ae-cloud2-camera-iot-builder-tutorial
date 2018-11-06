@@ -1,0 +1,3 @@
+How to build a remote movable camera with AE-Cloud2 and M1 IoT Builder.
+
+Build a small remote-controlled movable camera with AE-Cloud2 (S5D9) and Renesas IoT Builder.  This tutorial uses the AE-Cloud2 (S5D9) board to control both the camera and two servo motors that can change the camera’s lens position.  The AE-Cloud2 board also connects to the web-based user portal of Renesas IoT Builder so that the end user can remotely set the position of the camera, send a request to take a picture, and receive the picture image instantly for viewing.
