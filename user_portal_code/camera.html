@@ -1,0 +1,125 @@
+<style>
+    h2.title {
+        text-align: center;
+        margin: 0;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 8px;
+    }
+
+    p.subtitle {
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    /* The switch - the box around the slider */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {display:none;}
+
+    /* The slider */
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+</style>
+
+<div ng-controller="SettingsAndControl as ctr">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-12">
+          <div style="margin-top: 30px; float: right; min-width: max-content;">
+                    <button class="btn btn-info"    style="width: fit-content;"
+                            ng-click="ctr.go_to_charts()">Charts</button>
+                    <button class="btn btn-info"    style="width: fit-content; margin-left: 8px;"
+                            ng-click="ctr.go_to_service_logs()">Service Logs</button>
+                    <button class="btn btn-info"    style="width: fit-content; margin-left: 8px;"
+                            ng-click="ctr.go_to_settings()">Manage Alerts</button>
+                <button class="btn btn-info"    style="width: fit-content; margin-left: 8px;"
+                            ng-click="ctr.go_to_controls()">Controls</button>
+                    <button class="btn btn-warning" style="width: fit-content; margin-left: 8px;"
+                            ng-click="ctr.go_to_status()">Back</button>
+              </div>
+            <h2>Camera</h2>
+            <p class="subtitle">Device ID: {{ctr.device_id}}</p>
+        </div>
+    </div>
+  <div class="ibox-title" style="font-size: 1.2em; padding-bottom: 15px; border: none; padding-top: 5px; padding-bottom: 20px;">Note: This works if Camera is connected to the board.</div>
+  <div class="ibox-title" style="font-size: 1.2em; padding-bottom: 15px; border: none; padding-top: 5px; padding-bottom: 20px;">Status:{{ctr.msg}}</div>
+  <div class="ibox-title" style="font-size: 1.2em; padding-bottom: 15px; border: none; padding-top: 5px; padding-bottom: 20px;">Status:{{ctr.msg2}}</div>
+   <button class="btn btn-info"    style="width: fit-content;"
+                          ng-click="ctr.send_photo_request()">Photo Capture</button>
+  <p> 
+    <div class="ibox-title" style="font-size: 1.2em; padding-bottom: 15px; border: none; padding-top: 5px; padding-bottom: 20px;">Enter a number in the range of -4 through 4 for the position. (-4=0 degree, 0=90 degree, 4=180 degree) </div>
+    <p> Camera X Position: <input ng-model="ctr.cam_xpos"></input> 
+    <button class="btn btn-info"    style="width: fit-content;"
+                          ng-click="ctr.send_camera_xpos()">Send Camera X Position</button>
+        <span ng-show="ctr.cam_xpos_invalid">  Error! Unable to send because your x input value is not a valid value</span>
+    </p> 
+  </p> 
+  <p> 
+    <p> 
+      Camera Y Position: <input ng-model="ctr.cam_ypos"></input> 
+      <button class="btn btn-info"    style="width: fit-content;"
+                          ng-click="ctr.send_camera_ypos()">Send Camera Y Position</button>
+        <span ng-show="ctr.cam_ypos_invalid">  Error! Unable to send because your y input value is not a valid value</span>
+    </p> 
+    </p> 
+  </p> 
+  
+  <div class="ibox-title" style="font-size: 1.2em; padding-bottom: 15px; border: none; padding-top: 5px; padding-bottom: 20px;">
+       Camera X:Y {{ctr.cam_xpos}}:{{ctr.cam_ypos}}</div>
+  
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div id="canvas" style="margin-top:40px"><div>
+    <textarea id="photo" style="border:none;resize:none"></textarea>
+    </div>
+         
+</div> 
